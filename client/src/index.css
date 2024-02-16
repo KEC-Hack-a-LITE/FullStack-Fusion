@@ -1,7 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "boostrap/scss/bootstrap";
+@layer components{
+  .container{
+    @apply px-3  w-full sm:max-w-[600px] md:max-w-[740px] lg:max-w-[990px] xl:max-w-[1216px]
+  }
+  .logo{
+    @apply aspect-square
+  }
+}
 
 .site-footer {
   background-color: #05685e;
@@ -148,3 +155,4 @@
   width: 90%;
   margin: auto;
 }
+
