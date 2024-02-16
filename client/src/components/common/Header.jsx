@@ -26,12 +26,14 @@ export default function Header() {
               </ul>
             </div>
 
-            <button
-              type="button"
-              className="border text-[#05685e] rounded-md p-2 font-semibold bg-white hover:text-white hover:bg-[#05685e] transition-opacity  "
-            >
-              LOGIN{" "}
-            </button>
+            <Link to="/login">
+              <button
+                type="button"
+                className="border text-[#05685e] rounded-md p-2 font-semibold bg-white hover:text-white hover:bg-[#05685e] transition-opacity  "
+              >
+                LOGIN{" "}
+              </button>
+            </Link>
           </div>
         </nav>
       </header>
