@@ -1,8 +1,13 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/images/2.png";
+import { logout } from "../../app/slice/userSlice";
 export default function Header() {
+  const reduxStore = useSelector((store) => store);
+  const user = reduxStore.user.value;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <>
       <header>
@@ -31,14 +36,39 @@ export default function Header() {
               </ul>
             </div>
 
-            <Link to="/login">
+
+{user? <> 
+             <button
+                type="button"
+                className="border text-[#05685e] rounded-md p-2 font-semibold bg-white hover:text-white hover:bg-[#05685e] transition-opacity  "
+                onClick={()=>{
+                  dispatch(logout())
+                }}
+              >
+                LOGOUT
+              </button> 
+
+             
+            
+</>
+
+
+: 
+
+
+
+<><Link to="/login">
               <button
                 type="button"
                 className="border text-[#05685e] rounded-md p-2 font-semibold bg-white hover:text-white hover:bg-[#05685e] transition-opacity  "
               >
                 LOGIN{" "}
               </button>
-            </Link>
+            </Link> </>}
+
+            
+
+
           </div>
         </nav>
       </header>
