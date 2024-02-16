@@ -1,12 +1,13 @@
 import React from "react";
+import { FaDribbble, FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 export default function Footer() {
   return (
     <>
       <footer className="site-footer">
-        <div className="container">
+        <div className="">
           <div className="row">
             <div className="col-sm-12 col-md-6">
-              <h6>About</h6>
+              <h6 className="pb-5">About</h6>
               <p className="text-justify">
                 Kaushalyam, where technology and healthcare are combined to
                 simplify your medical journey. With a dedication to improving
@@ -31,11 +32,13 @@ export default function Footer() {
               </p>
             </div>
 
-            <div className="col-md-4 col-sm-6 col-xs-12">
+
+
+            {/* <div className="col-md-4 col-sm-6 col-xs-12">
               <ul className="social-icons">
                 <li>
                   <a className="facebook" href="#">
-                    <i className="fa fa-facebook"></i>
+                  <i className="fa fa-twitter"><FaFacebook/></i>
                   </a>
                 </li>
                 <li>
@@ -54,7 +57,16 @@ export default function Footer() {
                   </a>
                 </li>
               </ul>
-            </div>
+            </div> */}
+<div className="flex justify-end items-center gap-4 text-lg">
+  <FaFacebook/>
+  <FaTwitter/>
+  <FaLinkedin/>
+  <FaDribbble/>
+</div>
+
+
+
           </div>
         </div>
       </footer>
