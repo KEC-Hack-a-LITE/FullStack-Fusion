@@ -21,9 +21,6 @@ export default function Header() {
                   <a href="#home">Home</a>
                 </li>
                 <li className="hover:underline">
-                  <a href="">Pricing</a>
-                </li>
-                <li className="hover:underline">
                   <a href="#service">Services</a>
                 </li>
               </ul>
