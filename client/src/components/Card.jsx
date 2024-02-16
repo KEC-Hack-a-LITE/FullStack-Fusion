@@ -4,8 +4,10 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function MultiActionAreaCard(props) {
+  const navigate = useNavigate();
   return (
     <Card sx={{ Width: 345, zIndex: 1 }} className="w-[23%]">
       <CardActionArea>
@@ -23,7 +25,9 @@ export default function MultiActionAreaCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button className="text-[#05685e]">Learn More</Button>
+        <Button className="text-[#05685e]" onClick={() => navigate("/book")}>
+          {props.linkText}
+        </Button>
       </CardActions>
     </Card>
   );
