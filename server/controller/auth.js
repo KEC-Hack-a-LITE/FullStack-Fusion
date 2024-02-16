@@ -1,5 +1,6 @@
 const UserModel = require("../model/User");
 const HaUserModel = require("../model/HaUser");
+const DoctorModel = require("../model/doctor");
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 const Joi = require("joi");
@@ -221,9 +222,54 @@ const HaLogin = async function (req, res, next) {
   }
 };
 
+const doctorSchema = Joi.object({
+  name: Joi.string().min(3).required(),
+  department: Joi.string().required(),
+  nmc: Joi.number().required(),
+  availabletime: Joi.object().required(),
+});
+
+const addDoctor = async function (req, res, next) {
+  try {
+    const { error: validationError } = doctorSchema.validate(req.body, {
+      abortEarly: false,
+      stripUnknown: true,
+    });
+
+    if (validationError) {
+      let errors = validationError.details.map((el) => {
+        return {
+          message: el.message,
+          field: el.context.key,
+        };
+      });
+
+      console.log(validationError.message); // ValidationError
+      if (validationError.name === "ValidationError") {
+        return res.status(400).send({
+          msg: "Bad Request",
+          errors: errors,
+        });
+      }
+    }
+
+    let doctor = await DoctorModel.create({
+      name: req.body.name,
+      department: req.body.department,
+      nmc: req.body.nmc,
+      availabletime: req.body.availabletime,
+    });
+
+    res.send(doctor);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   login: login,
   signup: signup,
   HaSignup: signupHa,
   HaLogin: HaLogin,
+  addDoctor: addDoctor,
 };
