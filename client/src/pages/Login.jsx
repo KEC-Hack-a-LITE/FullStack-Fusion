@@ -15,6 +15,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
+import "react-tabs/style/react-tabs.css";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 const Login = () => {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -26,7 +28,10 @@ const Login = () => {
 
   const loginUser = async (values) => {
     try {
-      const response = await axios.post("http://localhost:3000/api/login", values);
+      const response = await axios.post(
+        "http://localhost:3000/api/login",
+        values
+      );
 
       localStorage.setItem("accessToken", response?.data?.accessToken);
       // localStorage.setItem("firstName", response?.data?.user?.firstName);
@@ -40,6 +45,27 @@ const Login = () => {
       // setSeverity("error");
     }
   };
+
+  const loginHAUser = async (values) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/loginHA",
+        values
+      );
+
+      localStorage.setItem("accessToken", response?.data?.accessToken);
+      // localStorage.setItem("firstName", response?.data?.user?.firstName);
+      navigate("/loggedin");
+      // setOpen(true);
+      // setMessage(response?.data?.message);
+      // setSeverity("success");
+    } catch (error) {
+      // setOpen(true);
+      console.log(error.response.data.message);
+      // setSeverity("error");
+    }
+  };
+
   return (
     <div
       style={{
@@ -48,83 +74,173 @@ const Login = () => {
         margin: "80px auto",
       }}
     >
-      {/* <CustomSnackBar open={open} message={message} severity={severity} /> */}
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        validationSchema={Yup.object({
-          email: Yup.string()
-            .email("Must be a valid email id!!")
-            .required()
-            .trim()
-            .lowercase(),
-          password: Yup.string().min(8).required(),
-        })}
-        onSubmit={async(values) => {
-          await loginUser(values);
-        }}  
-      >
-        {({ handleSubmit, getFieldProps, touched, errors }) => (
-          <form
-            onSubmit={handleSubmit}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "2rem",
-              width: "500px",
-              boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-              padding: "2rem",
-              borderRadius: "1rem",
+      <Tabs>
+        <Typography variant="h4" style={{ textAlign: "center" }}>
+          Login
+        </Typography>
+
+        <TabList style={{ margin: "20px auto" }}>
+          <Tab style={{ fontWeight: "bold" }}>As Patient</Tab>
+          <Tab style={{ fontWeight: "bold" }}>As Admin</Tab>
+        </TabList>
+
+        <TabPanel>
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            validationSchema={Yup.object({
+              email: Yup.string()
+                .email("Must be a valid email id!!")
+                .required()
+                .trim()
+                .lowercase(),
+              password: Yup.string().min(8).required(),
+            })}
+            onSubmit={async (values) => {
+              await loginUser(values);
             }}
           >
-            <Typography variant="h4" style={{ textAlign: "center" }}>
-              Login
-            </Typography>
-            <FormControl>
-              <TextField
-                label="Email"
-                variant="outlined"
-                {...getFieldProps("email")}
-              />
-              {touched.email && errors.email ? <div>{errors.email}</div> : null}
-            </FormControl>
-            <FormControl variant="outlined">
-              <InputLabel>Password</InputLabel>
-              <OutlinedInput
-                {...getFieldProps("password")}
-                type={showPassword ? "text" : "password"}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Password"
-              />
-              {touched.password && errors.password ? (
-                <div>{errors.password}</div>
-              ) : null}
-            </FormControl>
-            <Button
-              type="submit"
-              style={{ backgroundColor: "#05685e" }}
-              variant="contained"
-            >
-              Submit
-            </Button>
-            <Link to="/signup">
-              <Typography style={{ textAlign: "center" }}>
-                New here? <span style={{ color: "#05685e" }}>Register</span>
-              </Typography>
-            </Link>
-          </form>
-        )}
-      </Formik>
+            {({ handleSubmit, getFieldProps, touched, errors }) => (
+              <form
+                onSubmit={handleSubmit}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "2rem",
+                  width: "500px",
+                  boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                  padding: "2rem",
+                  borderRadius: "1rem",
+                }}
+              >
+                <FormControl>
+                  <TextField
+                    label="Email"
+                    variant="outlined"
+                    {...getFieldProps("email")}
+                  />
+                  {touched.email && errors.email ? (
+                    <div>{errors.email}</div>
+                  ) : null}
+                </FormControl>
+                <FormControl variant="outlined">
+                  <InputLabel>Password</InputLabel>
+                  <OutlinedInput
+                    {...getFieldProps("password")}
+                    type={showPassword ? "text" : "password"}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Password"
+                  />
+                  {touched.password && errors.password ? (
+                    <div>{errors.password}</div>
+                  ) : null}
+                </FormControl>
+                <Button
+                  type="submit"
+                  style={{ backgroundColor: "#05685e" }}
+                  variant="contained"
+                >
+                  Submit
+                </Button>
+                <Link to="/signup">
+                  <Typography style={{ textAlign: "center" }}>
+                    New here? <span style={{ color: "#05685e" }}>Register</span>
+                  </Typography>
+                </Link>
+              </form>
+            )}
+          </Formik>
+        </TabPanel>
+
+        <TabPanel>
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            validationSchema={Yup.object({
+              email: Yup.string()
+                .email("Must be a valid email id!!")
+                .required()
+                .trim()
+                .lowercase(),
+              password: Yup.string().min(8).required(),
+            })}
+            onSubmit={async (values) => {
+              await loginHAUser(values);
+            }}
+          >
+            {({ handleSubmit, getFieldProps, touched, errors }) => (
+              <form
+                onSubmit={handleSubmit}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "2rem",
+                  width: "500px",
+                  boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                  padding: "2rem",
+                  borderRadius: "1rem",
+                }}
+              >
+                <FormControl>
+                  <TextField
+                    label="Email"
+                    variant="outlined"
+                    {...getFieldProps("email")}
+                  />
+                  {touched.email && errors.email ? (
+                    <div>{errors.email}</div>
+                  ) : null}
+                </FormControl>
+                <FormControl variant="outlined">
+                  <InputLabel>Password</InputLabel>
+                  <OutlinedInput
+                    {...getFieldProps("password")}
+                    type={showPassword ? "text" : "password"}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Password"
+                  />
+                  {touched.password && errors.password ? (
+                    <div>{errors.password}</div>
+                  ) : null}
+                </FormControl>
+                <Button
+                  type="submit"
+                  style={{ backgroundColor: "#05685e" }}
+                  variant="contained"
+                >
+                  Submit
+                </Button>
+                <Link to="/signup">
+                  <Typography style={{ textAlign: "center" }}>
+                    New here? <span style={{ color: "#05685e" }}>Register</span>
+                  </Typography>
+                </Link>
+              </form>
+            )}
+          </Formik>
+        </TabPanel>
+      </Tabs>
+      {/* <CustomSnackBar open={open} message={message} severity={severity} /> */}
     </div>
   );
 };

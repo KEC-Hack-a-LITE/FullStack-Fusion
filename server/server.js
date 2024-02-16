@@ -9,7 +9,6 @@ const authRoutes = require("./routes/auth.js");
 const handleServer = require("./middleware/handleServer.js");
 
 const { MONGO_URL } = process.env;
-console.log(process.env);
 mongoose.connect(MONGO_URL).then(() => console.log("Connected!"));
 
 app.use(cors());

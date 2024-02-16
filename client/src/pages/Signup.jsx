@@ -44,6 +44,19 @@ const Register = () => {
     }
   };
 
+  const registerHAUser = async (values) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/signupHA",
+        values
+      );
+      console.log(response);
+      navigate("/login");
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
+
   return (
     <div
       style={{
@@ -325,7 +338,7 @@ const Register = () => {
                 .required(),
             })}
             onSubmit={async (values) => {
-              await registerUser(values);
+              await registerHAUser(values);
               console.log(values);
             }}
           >
