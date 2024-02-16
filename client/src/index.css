@@ -1,13 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer components{
-  .container{
-    @apply px-3  w-full sm:max-w-[600px] md:max-w-[740px] lg:max-w-[990px] xl:max-w-[1216px]
+@import url("https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap");
+@layer components {
+  .container {
+    @apply px-3  w-full sm:max-w-[600px] md:max-w-[740px] lg:max-w-[990px] xl:max-w-[1216px];
   }
-  .logo{
-    @apply aspect-square
+  .logo {
+    @apply aspect-square;
   }
+}
+.protest-strike-regular {
+  font-family: "Protest Strike", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 .site-footer {
@@ -156,3 +162,25 @@
   margin: auto;
 }
 
+.containerLarge {
+  background-image: url("./assets/images/landingbg.png");
+  width: 100vw;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.leftDiv {
+  padding: 10px;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+.rightDiv {
+  padding: 10px;
+  width: 25%;
+}

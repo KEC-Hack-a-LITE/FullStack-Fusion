@@ -12,14 +12,19 @@ export default function Header() {
           </div>
 
           <div className="flex justify-end items-center w-[100%] mr-4">
-
-          <div>
-            <ul className="flex text-white gap-16 m-10">
-              <li className="hover:underline"><a href="">Home</a></li>
-              <li className="hover:underline" ><a href="">Pricing</a></li>
-              <li className="hover:underline"><a href="">Services</a></li>
-            </ul>
-              </div>
+            <div>
+              <ul className="flex text-white gap-16 m-10">
+                <li className="hover:underline">
+                  <a href="">Home</a>
+                </li>
+                <li className="hover:underline">
+                  <a href="">Pricing</a>
+                </li>
+                <li className="hover:underline">
+                  <a href="">Services</a>
+                </li>
+              </ul>
+            </div>
 
             <button
               type="button"
@@ -27,12 +32,9 @@ export default function Header() {
             >
               LOGIN{" "}
             </button>
-            
-            
           </div>
         </nav>
       </header>
     </>
   );
 }
-
