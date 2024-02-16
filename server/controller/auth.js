@@ -266,10 +266,30 @@ const addDoctor = async function (req, res, next) {
   }
 };
 
+const getDoctor = async function (req, res, next) {
+  try {
+    const department = req.body.department; // Assuming department is passed as a parameter
+
+    // Retrieve doctors from the database based on department
+    const doctors = await DoctorModel.find({ department });
+
+    if (!doctors || doctors.length === 0) {
+      return res.status(404).send({
+        msg: "Doctors not found for the given department",
+      });
+    }
+
+    res.send(doctors);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   login: login,
   signup: signup,
   HaSignup: signupHa,
   HaLogin: HaLogin,
   addDoctor: addDoctor,
+  getDoctor: getDoctor,
 };

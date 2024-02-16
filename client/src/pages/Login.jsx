@@ -17,7 +17,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import "react-tabs/style/react-tabs.css";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { setUser } from '../app/slice/userSlice'
+import { setUser } from "../app/slice/userSlice";
 import { useDispatch } from "react-redux";
 
 const Login = () => {
@@ -27,14 +27,14 @@ const Login = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
   const loginUser = async (values) => {
     try {
       const response = await axios.post(
         "http://localhost:3000/api/login",
         values
       );
-      dispatch(setUser(response?.data?.user))
+      dispatch(setUser(response?.data?.user));
       localStorage.setItem("accessToken", response?.data?.token);
       // localStorage.setItem("firstName", response?.data?.user?.firstName);
       navigate("/loggedin");

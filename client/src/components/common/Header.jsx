@@ -36,39 +36,31 @@ export default function Header() {
               </ul>
             </div>
 
-
-{user? <> 
-             <button
-                type="button"
-                className="border text-[#05685e] rounded-md p-2 font-semibold bg-white hover:text-white hover:bg-[#05685e] transition-opacity  "
-                onClick={()=>{
-                  dispatch(logout())
-                }}
-              >
-                LOGOUT
-              </button> 
-
-             
-            
-</>
-
-
-: 
-
-
-
-<><Link to="/login">
-              <button
-                type="button"
-                className="border text-[#05685e] rounded-md p-2 font-semibold bg-white hover:text-white hover:bg-[#05685e] transition-opacity  "
-              >
-                LOGIN{" "}
-              </button>
-            </Link> </>}
-
-            
-
-
+            {user ? (
+              <>
+                <button
+                  type="button"
+                  className="border text-[#05685e] rounded-md p-2 font-semibold bg-white hover:text-white hover:bg-[#05685e] transition-opacity  "
+                  onClick={() => {
+                    dispatch(logout());
+                    navigate("/login");
+                  }}
+                >
+                  LOGOUT
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <button
+                    type="button"
+                    className="border text-[#05685e] rounded-md p-2 font-semibold bg-white hover:text-white hover:bg-[#05685e] transition-opacity  "
+                  >
+                    LOGIN{" "}
+                  </button>
+                </Link>{" "}
+              </>
+            )}
           </div>
         </nav>
       </header>
