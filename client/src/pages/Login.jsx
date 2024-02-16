@@ -14,35 +14,32 @@ import { Formik } from "formik";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-// import $axios from "../lib/axios.instance";
+import axios from "axios";
 
 const Login = () => {
   const [showPassword, setShowPassword] = React.useState(false);
-  const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState("");
-  const [severity, setSeverity] = useState("");
   const navigate = useNavigate();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
-  // const loginUser = async (values) => {
-  //   try {
-  //     // const response = await $axios.post("/user/login", values);
+  const loginUser = async (values) => {
+    try {
+      const response = await axios.post("http://localhost:3000/api/login", values);
 
-  //     // localStorage.setItem("accessToken", response?.data?.accessToken);
-  //     // localStorage.setItem("firstName", response?.data?.user?.firstName);
-  //     // navigate("/");
-  //     // setOpen(true);
-  //     // setMessage(response?.data?.message);
-  //     setSeverity("success");
-  //   } catch (error) {
-  //     setOpen(true);
-  //     setMessage(error.response.data.message);
-  //     setSeverity("error");
-  //   }
-  // };
+      localStorage.setItem("accessToken", response?.data?.accessToken);
+      // localStorage.setItem("firstName", response?.data?.user?.firstName);
+      navigate("/loggedin");
+      // setOpen(true);
+      // setMessage(response?.data?.message);
+      // setSeverity("success");
+    } catch (error) {
+      // setOpen(true);
+      console.log(error.response.data.message);
+      // setSeverity("error");
+    }
+  };
   return (
     <div
       style={{
@@ -60,11 +57,11 @@ const Login = () => {
             .required()
             .trim()
             .lowercase(),
-          password: Yup.string().required(),
+          password: Yup.string().min(8).required(),
         })}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={async(values) => {
+          await loginUser(values);
+        }}  
       >
         {({ handleSubmit, getFieldProps, touched, errors }) => (
           <form

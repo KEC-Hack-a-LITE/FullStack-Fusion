@@ -18,11 +18,10 @@ import { Formik } from "formik";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import axios from "axios";
+
 
 const Register = () => {
-  const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState("");
-  const [severity, setSeverity] = useState("");
   const [showPassword, setShowPassword] = React.useState(false);
   const navigate = useNavigate();
 
@@ -30,6 +29,23 @@ const Register = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  const registerUser = async (values) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/signup",
+        values
+      );
+      console.log(response);
+      navigate("/login");
+      
+     
+    } catch (error) {
+      
+      console.log(error.response.data.message);
+    }
+  };
+
   return (
     <div
       style={{
@@ -46,6 +62,7 @@ const Register = () => {
           password: "",
           gender: "female",
           bloodgroup: "",
+        
         }}
         validationSchema={Yup.object({
           firstName: Yup.string()
@@ -69,13 +86,16 @@ const Register = () => {
           gender: Yup.string()
             .trim()
             .oneOf(["male", "female", "preferNotToSay"]),
+          // number:Yup.number().trim().required("Number is Required"),
+         // weight:Yup.number().trim().required("Weight is required."),
           address: Yup.string().trim().required("Address is Required"),
           height: Yup.number().required("Height is required"),
+          dob:Yup.date().required(),
           bloodgroup: Yup.string().oneOf([
             "A",
             "B",
             "B+",
-            "A+",
+            "A+", 
             "A-",
             "O+",
             "O-",
@@ -83,7 +103,8 @@ const Register = () => {
             "AB-",
           ]),
         })}
-        onSubmit={(values) => {
+        onSubmit={ async(values) => {
+          await registerUser(values)
           console.log(values);
         }}
       >
@@ -154,6 +175,14 @@ const Register = () => {
                 <div>{errors.password}</div>
               ) : null}
             </FormControl>
+            <FormControl>
+              <TextField
+                label="Date of birth"
+                variant="outlined"
+                {...getFieldProps("dob")}
+              />
+              {touched.dob && errors.dob ? <div>{errors.dob}</div> : null}
+            </FormControl>
 
             <FormControl>
               <TextField
@@ -185,6 +214,27 @@ const Register = () => {
                 <div>{errors.height}</div>
               ) : null}
             </FormControl>
+            <FormControl>
+              <TextField
+                label="Weight"
+                variant="outlined"
+                {...getFieldProps("weight")}
+              />
+              {touched.weight && errors.weight ? (
+                <div>{errors.weight}</div>
+              ) : null}
+            </FormControl>
+            <FormControl>
+              <TextField
+                label="Contact Number"
+                variant="outlined"
+                {...getFieldProps("number")}
+              />
+              {touched.number && errors.number ? (
+                <div>{errors.number}</div>
+              ) : null}
+            </FormControl>
+
             <FormControl>
               <FormLabel>Gender</FormLabel>
               <RadioGroup
