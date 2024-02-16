@@ -1,7 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap");
 @layer components {
   .container {
     @apply px-3  w-full sm:max-w-[600px] md:max-w-[740px] lg:max-w-[990px] xl:max-w-[1216px];

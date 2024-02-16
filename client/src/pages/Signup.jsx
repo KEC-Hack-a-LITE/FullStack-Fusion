@@ -14,12 +14,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-// import axios from "axios";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { TabsContext } from "@mui/base";
 
 const Register = () => {
   const [open, setOpen] = useState(false);
@@ -47,6 +45,7 @@ const Register = () => {
           email: "",
           password: "",
           gender: "female",
+          bloodgroup: "",
         }}
         validationSchema={Yup.object({
           firstName: Yup.string()
@@ -70,6 +69,19 @@ const Register = () => {
           gender: Yup.string()
             .trim()
             .oneOf(["male", "female", "preferNotToSay"]),
+          address: Yup.string().trim().required("Address is Required"),
+          height: Yup.number().required("Height is required"),
+          bloodgroup: Yup.string().oneOf([
+            "A",
+            "B",
+            "B+",
+            "A+",
+            "A-",
+            "O+",
+            "O-",
+            "AB+",
+            "AB-",
+          ]),
         })}
         onSubmit={(values) => {
           console.log(values);
@@ -142,6 +154,37 @@ const Register = () => {
                 <div>{errors.password}</div>
               ) : null}
             </FormControl>
+
+            <FormControl>
+              <TextField
+                label="Blood Group"
+                variant="outlined"
+                {...getFieldProps("bloodgroup")}
+              />
+              {touched.bloodgroup && errors.bloodgroup ? (
+                <div>{errors.bloodgroup}</div>
+              ) : null}
+            </FormControl>
+            <FormControl>
+              <TextField
+                label="Address"
+                variant="outlined"
+                {...getFieldProps("address")}
+              />
+              {touched.address && errors.address ? (
+                <div>{errors.address}</div>
+              ) : null}
+            </FormControl>
+            <FormControl>
+              <TextField
+                label="Height(in cm)"
+                variant="outlined"
+                {...getFieldProps("height")}
+              />
+              {touched.height && errors.height ? (
+                <div>{errors.height}</div>
+              ) : null}
+            </FormControl>
             <FormControl>
               <FormLabel>Gender</FormLabel>
               <RadioGroup
@@ -185,7 +228,7 @@ const Register = () => {
             </Button>
             <Link to="/login">
               <Typography style={{ textAlign: "center" }}>
-                Aleady registered?{" "}
+                Already registered?{" "}
                 <span style={{ color: "#05685e" }}>Login</span>
               </Typography>
             </Link>

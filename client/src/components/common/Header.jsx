@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/2.png";
 export default function Header() {
+  const navigate = useNavigate();
   return (
     <>
       <header>
@@ -18,10 +19,14 @@ export default function Header() {
             <div>
               <ul className="flex text-white gap-16 m-10">
                 <li className="hover:underline">
-                  <a href="#home">Home</a>
+                  <a href="#home" onClick={() => navigate("/")}>
+                    Home
+                  </a>
                 </li>
                 <li className="hover:underline">
-                  <a href="#service">Services</a>
+                  <a href="#service" onClick={() => navigate("/")}>
+                    Services
+                  </a>
                 </li>
               </ul>
             </div>
