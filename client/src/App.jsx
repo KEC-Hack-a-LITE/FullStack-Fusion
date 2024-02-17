@@ -15,11 +15,9 @@ import OrthoDocs from "./pages/OrthoDocs.jsx";
 import NeuroDocs from "./pages/NeuroDocs.jsx";
 import CardioDocs from "./pages/CardioDocs.jsx";
 import VideoComponent from "./pages/VideoComponent.jsx";
-
-
+import BookingConfirmation from "./pages/BookingConfirmation.jsx";
 
 export default function App() {
-  
   return (
     <>
       <Header />
@@ -35,6 +33,7 @@ export default function App() {
         <Route path="neurodocs" element={<NeuroDocs />} />
         <Route path="cardiodocs" element={<CardioDocs />} />
         <Route path="videocomponent" element={<VideoComponent />} />
+        <Route path="finalBooking" element={<BookingConfirmation />} />
       </Routes>
 
       <Footer />
