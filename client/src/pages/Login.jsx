@@ -54,8 +54,8 @@ const Login = () => {
         "http://localhost:3000/api/loginHA",
         values
       );
-
-      localStorage.setItem("accessToken", response?.data?.accessToken);
+      dispatch(setUser(response?.data?.user));
+      localStorage.setItem("accessToken", response?.data?.token);
       // localStorage.setItem("firstName", response?.data?.user?.firstName);
       navigate("/admin");
       // setOpen(true);
