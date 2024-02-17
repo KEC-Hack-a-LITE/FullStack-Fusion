@@ -10,6 +10,10 @@ import { ToastContainer, toast } from "react-toastify";
 import { Routes, Route } from "react-router-dom";
 import LoggedIn from "./pages/LoggedIn.jsx";
 import Book from "./pages/Book.jsx";
+import EntDocs from "./pages/EntDocs.jsx";
+import OrthoDocs from "./pages/OrthoDocs.jsx";
+import NeuroDocs from "./pages/NeuroDocs.jsx";
+import CardioDocs from "./pages/CardioDocs.jsx";
 
 export default function App() {
   return (
@@ -22,6 +26,10 @@ export default function App() {
         <Route path="signup" element={<Signup />} />
         <Route path="loggedin" element={<LoggedIn />} />
         <Route path="book" element={<Book />} />
+        <Route path="entdocs" element={<EntDocs />} />
+        <Route path="orthodocs" element={<OrthoDocs />} />
+        <Route path="neurodocs" element={<NeuroDocs />} />
+        <Route path="cardiodocs" element={<CardioDocs />} />
       </Routes>
 
       <Footer />

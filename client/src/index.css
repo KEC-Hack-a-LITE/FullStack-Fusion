@@ -203,3 +203,27 @@
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
+
+.largeContainer {
+  margin: 90px auto;
+  width: 90vw;
+}
+
+.departments {
+  margin: 100px auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.doctor-list {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 90px;
+}
+
+.time_buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  gap: 5px;
+}

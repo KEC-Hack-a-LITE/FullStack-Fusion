@@ -4,7 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function MultiActionAreaCard(props) {
   const navigate = useNavigate();
@@ -15,13 +15,14 @@ export default function MultiActionAreaCard(props) {
           component="img"
           height="140"
           image={props.image}
-          alt="green iguana"
           className="h-[300px]"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {props.name}
           </Typography>
+          <Typography gutterBottom variant="h5" component="div"></Typography>
+          <Typography gutterBottom variant="h5" component="div"></Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>

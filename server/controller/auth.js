@@ -273,13 +273,13 @@ const getDoctor = async function (req, res, next) {
     // Retrieve doctors from the database based on department
     const doctors = await DoctorModel.find({ department });
 
-    if (!doctors || doctors.length === 0) {
+    if (!doctors || doctors == null) {
       return res.status(404).send({
         msg: "Doctors not found for the given department",
       });
     }
 
-    res.send(doctors);
+    res.status(200).send(doctors);
   } catch (err) {
     next(err);
   }

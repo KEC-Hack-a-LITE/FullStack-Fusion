@@ -25,7 +25,7 @@ router.post("/api/login", login);
 router.post("/api/loginHA", HaLogin);
 
 router.post("/api/addDoctor", addDoctor);
-router.get("/api/getDoctor", getDoctor);
+router.post("/api/getDoctor", getDoctor);
 
 module.exports = router;
 
