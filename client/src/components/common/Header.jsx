@@ -15,11 +15,12 @@ export default function Header() {
           style={{ zIndex: 99 }}
           className="bg-[#05685e] h-auto md:h-16 items-center flex shadow-md shadow-gray-700 p-3 fixed w-full top-0 left-0"
         >
+          <Link to={"/"}>
           <div className="  text-base md:text-xl   text-white md:flex  md:gap-2 font-semibold flex items-center">
             <img src={logo} alt="" className="h-16 w-30 p-1 m-2 " />
             <p>KAUSHALYAM</p>
           </div>
-
+          </Link>
           <div className="flex justify-end items-center w-[100%] mr-4">
             <div>
               <ul className="flex text-white gap-16 m-10">

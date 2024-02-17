@@ -7,7 +7,9 @@ import appointment from "../assets/images/appointment.png";
 import payment from "../assets/images/payment.png";
 import report from "../assets/images/report.png";
 import test from "../assets/images/test.png";
+import { Link } from "react-router-dom";
 export default function Home() {
+  
   return (
     <>
       <div
@@ -50,6 +52,21 @@ export default function Home() {
           />
         </div>
       </div>
+
+
+      <div className="services_section -z-1">
+        <p className="text-white">AWARENESS</p>         
+      </div>
+      <div className="m-10 -z-1 text-base">
+          
+          <p className=""> Awareness for health is crucial for maintaining a balanced and fulfilling life. It involves understanding the importance of physical, mental, and emotional well-being and making informed choices to support them. By being aware of our bodies, identifying potential health risks, and adopting healthy habits, we can prevent illness, enhance our quality of life, and increase longevity. This awareness extends beyond individual health to encompass broader societal issues such as access to healthcare, environmental factors, and social determinants of health. By promoting health awareness, we empower ourselves and our communities to prioritize wellness, leading to happier, more resilient societies.
+           
+          </p>
+          <Link to={"/videocomponent"}>
+<button type="button" className=" bg-[#05685e] rounded-md text-white h-11 w-auto p-2 m-2"> Awareness Videos</button>
+        </Link>
+        </div>
+
     </>
   );
 }

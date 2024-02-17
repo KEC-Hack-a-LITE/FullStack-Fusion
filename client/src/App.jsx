@@ -14,8 +14,12 @@ import EntDocs from "./pages/EntDocs.jsx";
 import OrthoDocs from "./pages/OrthoDocs.jsx";
 import NeuroDocs from "./pages/NeuroDocs.jsx";
 import CardioDocs from "./pages/CardioDocs.jsx";
+import VideoComponent from "./pages/VideoComponent.jsx";
+
+
 
 export default function App() {
+  
   return (
     <>
       <Header />
@@ -30,6 +34,7 @@ export default function App() {
         <Route path="orthodocs" element={<OrthoDocs />} />
         <Route path="neurodocs" element={<NeuroDocs />} />
         <Route path="cardiodocs" element={<CardioDocs />} />
+        <Route path="videocomponent" element={<VideoComponent />} />
       </Routes>
 
       <Footer />
