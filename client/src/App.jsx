@@ -16,6 +16,7 @@ import NeuroDocs from "./pages/NeuroDocs.jsx";
 import CardioDocs from "./pages/CardioDocs.jsx";
 import VideoComponent from "./pages/VideoComponent.jsx";
 import BookingConfirmation from "./pages/BookingConfirmation.jsx";
+import Admin from "./pages/Admin.jsx";
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
         <Route path="cardiodocs" element={<CardioDocs />} />
         <Route path="videocomponent" element={<VideoComponent />} />
         <Route path="finalBooking" element={<BookingConfirmation />} />
+        <Route path="admin" element={<Admin />} />
       </Routes>
 
       <Footer />

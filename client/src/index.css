@@ -279,3 +279,18 @@
   transition: 0.5s ease-in-out;
   font-weight: bold;
 }
+
+.table_section {
+  border: 2px solid black;
+  display: block;
+  margin: 90px auto;
+}
+
+.table_section h1 {
+  color: white;
+  background-color: #05685e;
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  padding: 10px;
+}

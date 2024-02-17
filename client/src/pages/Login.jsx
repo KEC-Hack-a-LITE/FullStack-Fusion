@@ -57,7 +57,7 @@ const Login = () => {
 
       localStorage.setItem("accessToken", response?.data?.accessToken);
       // localStorage.setItem("firstName", response?.data?.user?.firstName);
-      navigate("/loggedin");
+      navigate("/admin");
       // setOpen(true);
       // setMessage(response?.data?.message);
       // setSeverity("success");
