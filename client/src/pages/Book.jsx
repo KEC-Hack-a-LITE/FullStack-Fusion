@@ -32,11 +32,11 @@ export default function HorizontalLinearStepper() {
       <div className="departments">
         <MultiActionAreaCard2 name="ENT" image={ent} goTo="entdocs" />
         <MultiActionAreaCard2 name="Ortho" image={ortho} goTo="orthodocs" />
-        <MultiActionAreaCard2 name="Neuro" image={neuro} goTo="cardiodocs" />
+        <MultiActionAreaCard2 name="Neuro" image={neuro} goTo="neurodocs" />
         <MultiActionAreaCard2
           name="Cardiology"
           image={cardiology}
-          goTo="neurodocs"
+          goTo="cardiodocs"
         />
       </div>
     </div>
