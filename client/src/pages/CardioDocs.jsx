@@ -88,7 +88,6 @@ function MultiActionAreaCard22(props) {
           width="600px"
           image={props.image}
           className="h-[300px]"
-          onClick={() => navigate(`/${props.goTo}`)}
         />
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">

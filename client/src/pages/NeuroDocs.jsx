@@ -6,7 +6,6 @@ import {
   CardContent,
   CardMedia,
   CircularProgress,
-  Stack,
   Typography,
 } from "@mui/material";
 import axios from "axios";
@@ -16,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 
 const NeuroDocs = () => {
   const [todoList, setTodoList] = useState([]);
-  const [availTime, setavailTime] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const userName = localStorage.getItem("firstName");
 
@@ -39,10 +37,7 @@ const NeuroDocs = () => {
         setIsLoading(true);
         const response = await axios.request(config).then((response) => {
           setTodoList(response?.data);
-          //   setavailTime(response?.availabletime);
         });
-        console.log(todoList);
-        // console.log(availTime);
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
@@ -57,7 +52,6 @@ const NeuroDocs = () => {
 
   return (
     <div className="doctor-list">
-      {/* <Typography variant="h4">Welcome {userName}.</Typography> */}
       {todoList.map((doc, index) => {
         return (
           <>
@@ -67,7 +61,6 @@ const NeuroDocs = () => {
                 nmc={doc?.nmc}
                 department={doc?.department}
                 image={doc1}
-                // availTime={doc.availabletime[index]}
               />
             </div>
           </>
@@ -87,7 +80,6 @@ function MultiActionAreaCard22(props) {
           width="600px"
           image={props.image}
           className="h-[300px]"
-          onClick={() => navigate(`/${props.goTo}`)}
         />
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">
