@@ -71,6 +71,12 @@ const NeuroDocs = () => {
 };
 function MultiActionAreaCard22(props) {
   const navigate = useNavigate();
+  const handleButton = (event) => {
+    const value = event.currentTarget.value;
+    const doctorName = props.name;
+    console.log(doctorName);
+    navigate(`/finalBooking?value=${value}&docName=${doctorName}`);
+  };
   return (
     <Card sx={{ Width: 345, zIndex: 1 }} className="w-[110%]">
       <CardActionArea>
@@ -92,6 +98,9 @@ function MultiActionAreaCard22(props) {
           {/* <Typography component="div">NMC:{availTime}</Typography> */}
           <div className="time_buttons">
             <Button
+              onClick={handleButton}
+              value="12:00 PM - 1:00 PM"
+              docName={props.name}
               style={{
                 color: "white",
                 backgroundColor: "#05685e",
@@ -102,6 +111,9 @@ function MultiActionAreaCard22(props) {
               12:00 PM - 1:00 PM
             </Button>
             <Button
+              onClick={handleButton}
+              value="1:00 PM - 2:00 PM"
+              docName={props.name}
               style={{
                 color: "white",
                 backgroundColor: "#05685e",
@@ -113,6 +125,9 @@ function MultiActionAreaCard22(props) {
               1:00 PM - 2:00 PM
             </Button>
             <Button
+              onClick={handleButton}
+              value="2:00 PM - 3:00 PM"
+              docName={props.name}
               style={{
                 color: "white",
                 backgroundColor: "#05685e",
